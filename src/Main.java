@@ -9,21 +9,33 @@ public class Main {
         // int[] sortedArray = bubbleSort( arrayToSort);
         //System.out.println( Arrays.toString( sortedArray ));
 
-        //mit Zeitmessung Vergleich BubbleSort / Quicksort und 20000 Werte
-        int[] arrayToSort = getRandomArray(100000);
+        //mit Zeitmessung Vergleich BubbleSort / Quicksort und 10000 Werte
+        int[] arrayToSort = getRandomArray(5000);
         int[] arrayToSort2 = Arrays.copyOf(arrayToSort,arrayToSort.length);
+        int[] arrayToSort3 = Arrays.copyOf(arrayToSort,arrayToSort.length);
+
+        //Messung BubbleSort
         long timeStart = System.currentTimeMillis();
         int[] sortedArray = bubbleSort( arrayToSort);
 
         long timeEnd = System.currentTimeMillis();
-        System.out.println("Dauer der Sortierung: " + (timeEnd - timeStart) + " Millisek.");
+        System.out.println("Dauer BubbleSort: " + (timeEnd - timeStart) + " Millisek.");
         //System.out.println( Arrays.toString( sortedArray ));
 
+        //Messung SelectionSort
         timeStart = System.currentTimeMillis();
-        Arrays.sort(arrayToSort2);
+        int[] sortedArray2 = selectionSort(arrayToSort2);
 
         timeEnd = System.currentTimeMillis();
-        System.out.println("Dauer der Sortierung: " + (timeEnd - timeStart) + " Millisek.");
+        System.out.println("Dauer SelectionSort: " + (timeEnd - timeStart) + " Millisek.");
+        //System.out.println( Arrays.toString( sortedArray2 ));
+
+        //Messung QuickSort
+        timeStart = System.currentTimeMillis();
+        Arrays.sort(arrayToSort3);
+
+        timeEnd = System.currentTimeMillis();
+        System.out.println("Dauer QuickSort: " + (timeEnd - timeStart) + " Millisek.");
         //System.out.println( Arrays.toString( arrayToSort2 ));
     }
 
@@ -43,8 +55,6 @@ public class Main {
                     sortArray[i+1] = sortArray[i];
                     sortArray[i] = temp;
 
-                    //(sortArray[i], sortArray[i+1]) = (sortArray[i+1], sortArray[i]);
-
                     sorted = false;
                 }
             }
@@ -52,6 +62,27 @@ public class Main {
 
         return sortArray;
     }
+
+    private static int[] selectionSort( int[] sortArray ){
+
+        for(int i=0; i < sortArray.length; i++){
+            int min = i;
+
+            for(int j= i+1; j < sortArray.length; j++){
+
+                if (sortArray[j] < sortArray[min]) {
+                    min = j;
+                }
+
+            }
+            int temp = sortArray[min];
+            sortArray[min] = sortArray[i];
+            sortArray[i] = temp;
+        }
+        return sortArray;
+    }
+
+
 
     private static int[] getRandomArray( int length ){
 
@@ -63,5 +94,8 @@ public class Main {
 
             return array;
     }
+
+
+
 
 }
