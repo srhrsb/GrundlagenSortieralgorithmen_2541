@@ -4,13 +4,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        //int[] arrayToSort = {4, 6,1,2};
-
-        // int[] sortedArray = bubbleSort( arrayToSort);
-        //System.out.println( Arrays.toString( sortedArray ));
-
-        //mit Zeitmessung Vergleich BubbleSort / Quicksort und 10000 Werte
-        int[] arrayToSort = getRandomArray(5000);
+        //mit Zeitmessung Vergleich BubbleSort / SelectionSort / Quicksort und 10000 Werte
+        int[] arrayToSort = getRandomArray(10000);
         int[] arrayToSort2 = Arrays.copyOf(arrayToSort,arrayToSort.length);
         int[] arrayToSort3 = Arrays.copyOf(arrayToSort,arrayToSort.length);
 
